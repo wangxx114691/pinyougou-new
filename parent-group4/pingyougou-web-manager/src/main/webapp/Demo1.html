@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内置服务 </title>
+    <script src="angular.min.js"></script>
+    <script>
+        // 定义model
+        var app = angular.module('pulsApp', []);
+        // 定义控制器
+        app.controller('plusController', function ($scope) {
+            $scope.add = function () { // 这个具体的事件, 需要定义方法
+                // return parseInt($scope.x) + parseInt($scope.y);
+                $scope.z = parseInt($scope.x) + parseInt($scope.y);
+            }
+            // $scope.list = [100,200,300,400];   // 定义数组
+            // $scope.student=[
+            //     {'name':'柳岩','age':18,'id':10},
+            //     {'name':'唐嫣','age':28,'id':6},
+            //     {'name':'金莲','age':10,'id':8}
+            // ];
+        });
+    </script>
+</head>
+<body ng-app="pulsApp" ng-controller="plusController">
+x:<input type="text" ng-model="x"/>
+y:<input type="text" ng-model="y"/><br/>
+<button ng-click="add()">计算</button><br/>
+<!--{{add()}}-->
+{{z}}<br />
+<table >
+    <tr >
+        <td ng-repeat="x in list">{{x}}</td>
+    </tr>
+    <tr ng-repeat="one in student">
+        <td >{{one.name}}</td>
+        <td >{{one.age}}</td>
+        <td >{{one.id}}</td>
+    </tr>
+</table>
+
+</body>
+</html>

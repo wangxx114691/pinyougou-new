@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 内置服务 </title>
+    <script src="angular.min.js"></script>
+    <script>
+        var app = angular.module('pulsApp', []);
+        app.controller('plusController', function ($scope,$http) {
+            $scope.findAll = function () {
+                $http.get("/brand/findAll.do").success(    //定义请求成功后的回调函数, 有点像jQuery的异步请求
+                    function (response) {
+                        $scope.list = response;
+                    }
+                )
+            }
+        });
+    </script>
+</head>
+<body ng-app ="pulsApp" ng-controller="plusController">
+<table >
+    <tr ng-repeat="x in list">
+        <td >{{x.id}}</td>
+        <td >{{x.name}}</td>
+        <td >{{x.firstChar}}</td>
+    </tr>
+</table>
+
+</body>
+</html>
