@@ -1,12 +1,12 @@
 // 定义控制器:
-app.controller("brandCheckController",function($scope,$controller,$http,brandCheckService){
+app.controller("specCheckController.js",function($scope,$controller,$http,specCheckService){
 	// AngularJS中的继承:伪继承
 	$controller('baseController',{$scope:$scope});
 	
 	// 查询所有的品牌列表的方法:
 	$scope.findAll = function(){
 		// 向后台发送请求:
-        brandCheckService.findAll().success(function(response){
+        specCheckService.findAll().success(function(response){
 			$scope.list = response;
 		});
 	}
@@ -14,7 +14,7 @@ app.controller("brandCheckController",function($scope,$controller,$http,brandChe
 	// 分页查询
 	$scope.findPage = function(page,rows){
 		// 向后台发送请求获取数据:
-        brandCheckService.findPage(page,rows).success(function(response){
+        specCheckService.findPage(page,rows).success(function(response){
 			$scope.paginationConf.totalItems = response.total;
 			$scope.list = response.rows;
 		});
@@ -26,10 +26,10 @@ app.controller("brandCheckController",function($scope,$controller,$http,brandChe
 		var object;
 		if($scope.entity.id != null){
 			// 更新
-			object = brandCheckService.update($scope.entity);
+			object = specCheckService.update($scope.entity);
 		}else{
 			// 保存
-			object = brandCheckService.add($scope.entity);
+			object = specCheckService.add($scope.entity);
 		}
 		object.success(function(response){
 			// {flag:true,message:xxx}
@@ -47,7 +47,7 @@ app.controller("brandCheckController",function($scope,$controller,$http,brandChe
 	
 	// 查询一个:
 	$scope.findById = function(id){
-        brandCheckService.findOne(id).success(function(response){
+        specCheckService.findOne(id).success(function(response){
 			// {id:xx,name:yy,firstChar:zz}
 			$scope.entity = response;
 		});
@@ -55,7 +55,7 @@ app.controller("brandCheckController",function($scope,$controller,$http,brandChe
 	
 	// 删除品牌:
 	$scope.dele = function(){
-        brandCheckService.dele($scope.selectIds).success(function(response){
+        specCheckService.dele($scope.selectIds).success(function(response){
 			// 判断保存是否成功:
 			if(response.flag==true){
 				// 保存成功
