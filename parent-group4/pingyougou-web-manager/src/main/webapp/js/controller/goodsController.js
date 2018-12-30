@@ -102,4 +102,19 @@ app.controller('goodsController' ,function($scope,$controller,itemCatService   ,
 			}
 		});
 	}
+
+    // 显示状态
+    $scope.marketable = ["未上架","已上架"];
+    // 上下架审核的方法:
+    $scope.marketableStatus = function(marketable){
+        goodsService.marketableStatus($scope.selectIds,marketable).success(function(response){
+            if(response.flag){
+            	alert(response.message);
+                $scope.reloadList();//刷新列表
+                $scope.selectIds = [];
+            }else{
+                alert(response.message);
+            }
+        });
+    }
 });	

@@ -1,5 +1,6 @@
 package com.itheima.core.listener;
 
+import com.itheima.core.dao.good.GoodsDao;
 import com.itheima.core.dao.item.ItemDao;
 import com.itheima.core.pojo.item.Item;
 import com.itheima.core.pojo.item.ItemQuery;
@@ -17,6 +18,8 @@ public class ItemSearchListener implements MessageListener {
     private ItemDao itemDao;
     @Autowired
     private SolrTemplate solrTemplate;
+    @Autowired
+    private GoodsDao goodsDao;
 
     @Override
     public void onMessage(Message message) {

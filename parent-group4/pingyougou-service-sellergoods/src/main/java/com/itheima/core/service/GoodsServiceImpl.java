@@ -233,5 +233,34 @@ public class GoodsServiceImpl implements GoodsService {
         }
     }
 
+    @Override
+    public void marketableStatus(Long[] ids, String marketable) {
+        // 1.更新数据库中的状态
+        Goods goods = new Goods();
+        goods.setIsMarketable(marketable);
+        for (Long id : ids) {
+            ItemQuery itemQuery = new ItemQuery();
+            itemQuery.createCriteria().andGoodsIdEqualTo(id);
+            List<Item> itemList = itemDao.selectByExample(itemQuery);
+            for (Item item : itemList) {
+                item.setStatus("1");
+            }
+            goods.setId(id);
+            goodsDao.updateByPrimaryKeySelective(goods);
+            // 使用jmsTemplate实现 发消息
+            jmsTemplate.send(topicPageAndSolrDestination , new MessageCreator() {
+                @Override
+                public Message createMessage(Session session) throws JMSException {
+                    return session.createTextMessage(String.valueOf(id));
+                }
+            });
+            // 原先有的步骤
+            // 2.更新索引库
+            // 3.生成静态化页面
+
+
+        }
+    }
+
 
 }
