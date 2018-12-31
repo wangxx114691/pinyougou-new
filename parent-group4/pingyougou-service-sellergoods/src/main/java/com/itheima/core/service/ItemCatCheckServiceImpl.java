@@ -52,28 +52,29 @@ public class ItemCatCheckServiceImpl implements ItemCatCheckService {
     public PageResult search(Integer page, Integer rows, Long parentId, String name) {
         // 分页
         PageHelper.startPage(page,rows);
-        ItemCatQuery query = new ItemCatQuery();
-        ItemCatQuery.Criteria criteria = query.createCriteria();
+        ItemCatCheckQuery query = new ItemCatCheckQuery();
+        ItemCatCheckQuery.Criteria criteria = query.createCriteria();
         criteria.andParentIdEqualTo(parentId);
-        Page<ItemCat> p = (Page<ItemCat>) itemCatDao.selectByExample(query);
+        Page<ItemCatCheck> p = (Page<ItemCatCheck>) itemCatCheckDao.selectByExample(query);
         return new PageResult(p.getTotal(),p.getResult());
     }
 
     @Override
     public void add(ItemCatCheck itemCat, String name) {
+        Seller seller = sellerDao.selectByPrimaryKey(name);
+        itemCat.setSellerName(seller.getName());
         ItemCat cat = new ItemCat();
         cat.setName(itemCat.getName());
         cat.setTypeId(35L);
         itemCatDao.insertSelective(cat);
         itemCat.setSellerId(name);
-        Seller seller = sellerDao.selectByPrimaryKey(name);
-        itemCat.setSellerName(seller.getName());
+        itemCat.setCheckStatus("0");
         itemCatCheckDao.insertSelective(itemCat);
     }
 
     @Override
-    public void update(ItemCat itemCat) {
-        itemCatDao.updateByPrimaryKeySelective(itemCat);
+    public void update(ItemCatCheck itemCat) {
+        itemCatCheckDao.updateByPrimaryKeySelective(itemCat);
     }
 
     @Override
@@ -82,7 +83,7 @@ public class ItemCatCheckServiceImpl implements ItemCatCheckService {
 //        query.createCriteria().andIdIn(Arrays.asList(ids));
 //        itemCatDao.deleteByExample(query);
         for (Long id : ids) {
-            itemCatDao.deleteByPrimaryKey(id);
+            itemCatCheckDao.deleteByPrimaryKey(id);
         }
     }
 
@@ -92,7 +93,7 @@ public class ItemCatCheckServiceImpl implements ItemCatCheckService {
     }
 
     @Override
-    public List<ItemCatCheck> findAll2() {
+    public List<ItemCatCheck> findAll() {
         return itemCatCheckDao.selectByExample(null);
     }
 }

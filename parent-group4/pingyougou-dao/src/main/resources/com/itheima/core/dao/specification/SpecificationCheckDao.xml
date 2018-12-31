@@ -233,6 +233,6 @@
 
   <!--自定义查询方法, 手写sql语句-->
   <select id="selectOptionList" parameterType="String" resultType="map">
-    SELECT id,name text from tb_specification_check where seller_id = ?
+    SELECT id,name text from tb_specification_check where seller_id =  #{name}
   </select>
 </mapper>

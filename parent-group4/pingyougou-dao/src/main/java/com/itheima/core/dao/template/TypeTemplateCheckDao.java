@@ -5,6 +5,7 @@ import com.itheima.core.pojo.template.TypeTemplateCheckQuery;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TypeTemplateCheckDao {
     int countByExample(TypeTemplateCheckQuery example);
@@ -28,4 +29,6 @@ public interface TypeTemplateCheckDao {
     int updateByPrimaryKeySelective(TypeTemplateCheck record);
 
     int updateByPrimaryKey(TypeTemplateCheck record);
+
+    List<Map> selectOptionList();
 }

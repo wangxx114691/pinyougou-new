@@ -3,14 +3,14 @@ app.controller('goodsController' ,function($scope,$controller,$location,typeTemp
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
-    //读取列表数据绑定到表单中  
-	$scope.findAll=function(){
-		goodsService.findAll().success(
-			function(response){
-				$scope.list=response;
-			}			
-		);
-	}    
+    // //读取列表数据绑定到表单中
+	// $scope.findAll=function(){
+	// 	goodsService.findAll().success(
+	// 		function(response){
+	// 			$scope.list=response;
+	// 		}
+	// 	);
+	// }
 	
 	//分页
 	$scope.findPage=function(page,rows){			

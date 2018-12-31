@@ -77,18 +77,18 @@ app.controller('itemCatController' ,function($scope,$controller,itemCatService,t
 	$scope.searchEntity={};//定义搜索对象
 
 	//搜索
-	$scope.search=function(page,rows){
-		if($scope.parentId == null){
-			$scope.parentId =0;
-		}
-		// itemCatService.search(page,rows,$scope.parentId).success(
-		itemCatService.search(page,rows,$scope.searchEntity).success(
-			function(response){
-				$scope.list=response.rows;	
-				$scope.paginationConf.totalItems=response.total;//更新总记录数
-			}			
-		);
-	}
+	// $scope.search=function(page,rows){
+	// 	if($scope.parentId == null){
+	// 		$scope.parentId =0;
+	// 	}
+	// 	// itemCatService.search(page,rows,$scope.parentId).success(
+	// 	itemCatService.search(page,rows,$scope.searchEntity).success(
+	// 		function(response){
+	// 			$scope.list=response.rows;
+	// 			$scope.paginationConf.totalItems=response.total;//更新总记录数
+	// 		}
+	// 	);
+	// }
 	
 	// 根据父ID查询分类
 	$scope.findByParentId =function(parentId){
@@ -97,6 +97,14 @@ app.controller('itemCatController' ,function($scope,$controller,itemCatService,t
 			// $scope.paginationConf.totalItems=response.total;
 		});
 	}
+
+    // 根据父ID查询分类
+    $scope.findByParentId2 =function(parentId){
+        itemCatService.findByParentId2(parentId).success(function(response){
+            $scope.list=response;
+            // $scope.paginationConf.totalItems=response.total;
+        });
+    }
 	
 	// 定义一个变量记录当前是第几级分类
 	$scope.grade = 1;

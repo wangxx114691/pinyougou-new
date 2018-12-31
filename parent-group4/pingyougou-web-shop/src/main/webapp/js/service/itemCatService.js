@@ -11,11 +11,11 @@ app.service('itemCatService',function($http){
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('../itemCat/findOne.do?id='+id);
+		return $http.get('../itemCatCheck/findOne.do?id='+id);
 	}
     //查询实体
     this.findOne2=function(id){
-        return $http.get('../itemCat/findOne2.do?id='+id);
+        return $http.get('../itemCatCheck/findOne2.do?id='+id);
     }
 	//增加 
 	this.add=function(entity){
@@ -39,6 +39,6 @@ app.service('itemCatService',function($http){
 	}
 
     this.findByParentId2 = function(parentId){
-        return $http.get("../itemCat/findByParentId2.do?parentId="+parentId);
+        return $http.get("../itemCatCheck/findByParentId2.do?parentId="+parentId);
     }
 });

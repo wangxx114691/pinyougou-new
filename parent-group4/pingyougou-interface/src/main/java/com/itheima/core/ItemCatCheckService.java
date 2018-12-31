@@ -11,13 +11,13 @@ public interface ItemCatCheckService {
 
     PageResult search(Integer page, Integer rows, Long parentId, String name);
 
-    void add(ItemCat itemCat, String name);
+    void add(ItemCatCheck itemCat, String name);
 
-    void update(ItemCat itemCat);
+    void update(ItemCatCheck itemCat);
 
     void delete(Long[] ids);
 
     ItemCatCheck findOne(Long id);
 
-    List<ItemCatCheck> findAll2();
+    List<ItemCatCheck> findAll();
 }

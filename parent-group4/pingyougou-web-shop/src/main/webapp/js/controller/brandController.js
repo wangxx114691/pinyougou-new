@@ -4,12 +4,12 @@ app.controller("brandController",function($scope,$controller,$http,brandService)
 	$controller('baseController',{$scope:$scope});
 	
 	// 查询所有的品牌列表的方法:
-	$scope.findAll = function(){
-		// 向后台发送请求:
-		brandService.findAll().success(function(response){
-			$scope.list = response;
-		});
-	}
+	// $scope.findAll = function(){
+	// 	// 向后台发送请求:
+	// 	brandService.findAll().success(function(response){
+	// 		$scope.list = response;
+	// 	});
+	// }
 
 	// 分页查询
 	$scope.findPage = function(page,rows){
