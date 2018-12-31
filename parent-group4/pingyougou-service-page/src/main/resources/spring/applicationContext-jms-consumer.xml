@@ -29,5 +29,19 @@
 		<property name="messageListener" ref="pageListener" />
 	</bean>
 	<bean id="pageListener" class="com.itheima.core.listener.PageListener"></bean>
-	
+
+	<!--发布订阅模式, 生成页面-->
+	<bean id="queueSolrDeleteDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="pinyougou_queue_solr_delete"/>
+	</bean>
+
+	<!-- 发布订阅模式, 消息监听容器   生成页面 -->
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="queueSolrDeleteDestination" />
+		<property name="messageListener" ref="deletePageListener" />
+	</bean>
+	<bean id="deletePageListener" class="com.itheima.core.listener.DeletePageListener"></bean>
+
+
 </beans>

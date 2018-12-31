@@ -64,7 +64,19 @@ app.controller('goodsController' ,function($scope,$controller,itemCatService   ,
 			}		
 		);				
 	}
-	
+
+    $scope.downdele=function(){
+        //获取选中的复选框
+        goodsService.downdele( $scope.selectIds ).success(
+            function(response){
+                if(response.flag){
+                	alert(response.message);
+                    $scope.reloadList();//刷新列表
+                    $scope.selectIds = [];
+                }
+            }
+        );
+    }
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索

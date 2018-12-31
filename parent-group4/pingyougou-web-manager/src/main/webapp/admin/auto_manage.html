@@ -44,7 +44,7 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" ng-click="dele()" class="btn btn-default" title="下架" ><i class="fa fa-trash-o"></i> 下架</button>
+                                        <button type="button" ng-click="downdele()" class="btn btn-default" title="下架" ><i class="fa fa-trash-o"></i> 下架</button>
                                         <button type="button" ng-click="marketableStatus('1')" class="btn btn-default" title="上架" ><i class="fa fa-check"></i> 上架</button>
                                         <!--<button type="button" ng-click="updateStatus('2')" class="btn btn-default" title="驳回" ><i class="fa fa-ban"></i> 驳回</button>                                  -->
                                         <button type="button" class="btn btn-default" title="刷新" ><i class="fa fa-refresh"></i> 刷新</button>
@@ -87,7 +87,7 @@
 									      <td>{{itemCatList[entity.category3Id]}}</td>
 		                                  <td>		                                  
 		                                  	<span>
-		                                  		{{marketable[entity.isMarketable]}}
+		                                  		{{entity.isMarketable==null?"未上架":marketable[entity.isMarketable]}}
 		                                  	</span>
 		                                  	
 		                                  </td>		                                  
