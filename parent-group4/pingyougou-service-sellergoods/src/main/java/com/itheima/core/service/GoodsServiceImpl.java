@@ -184,6 +184,7 @@ public class GoodsServiceImpl implements GoodsService {
     private JmsTemplate jmsTemplate;
     @Autowired  // TODO 这步可能有问题
     private Destination topicPageAndSolrDestination;
+    @Autowired
     private Destination queueSolrDeleteDestination;
     @Override
     public void updateStatus(Long[] ids, String status) {
@@ -233,7 +234,29 @@ public class GoodsServiceImpl implements GoodsService {
         }
     }
 
-
+    @Override
+    public void downdele(Long[] ids) {
+        Goods goods = new Goods();
+        goods.setIsMarketable("0");
+        for (Long id : ids) {
+            goods.setId(id);
+            goodsDao.updateByPrimaryKeySelective(goods);
+            // 使用jmsTemplate实现 发消息
+            jmsTemplate.send(queueSolrDeleteDestination , new MessageCreator() {
+                @Override
+                public Message createMessage(Session session) throws JMSException {
+                    return session.createTextMessage(String.valueOf(id));
+                }
+            });
+     /*       // 删除索引库
+            Criteria criteria = new Criteria("item_goodsid").is(id);
+            SolrDataQuery query = new SimpleQuery(criteria);
+            solrTemplate.delete(query);
+            solrTemplate.commit();
+            // 不删除静态化页面
+            */
+        }
+    }
     @Override
     public void marketableStatus(Long[] ids, String marketable) {
         // 1.更新数据库中的状态
