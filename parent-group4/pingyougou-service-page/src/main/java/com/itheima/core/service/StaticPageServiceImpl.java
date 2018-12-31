@@ -19,10 +19,7 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import javax.servlet.ServletContext;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +74,16 @@ public class StaticPageServiceImpl implements StaticPageService, ServletContextA
             }
         }
     }
+
+    @Override
+    public void delete(Long id) {
+        String AbsPath = getPath("/" + id + ".html");   // 根据相对路径获取绝对路径
+        File file = new File(AbsPath);
+        if (null!=file&&file.exists()){
+            file.delete();
+        }
+    }
+
     // 获取全路径,当然这个方法可以不写,直接写在上面的方法中
     private String getPath(String path) {
         return servletContext.getRealPath(path);    // 记住这个方法, 获取的是绝对路径, 还有一个常用的getContextPath获取的是项目路径

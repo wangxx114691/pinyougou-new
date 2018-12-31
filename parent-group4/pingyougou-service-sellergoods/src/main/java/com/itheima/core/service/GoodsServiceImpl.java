@@ -233,6 +233,7 @@ public class GoodsServiceImpl implements GoodsService {
         }
     }
 
+
     @Override
     public void marketableStatus(Long[] ids, String marketable) {
         // 1.更新数据库中的状态

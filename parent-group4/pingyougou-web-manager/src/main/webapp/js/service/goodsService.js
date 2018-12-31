@@ -25,7 +25,11 @@ app.service('goodsService',function($http){
 	//搜索
 	this.search=function(page,rows,searchEntity){
 		return $http.post('../goods/search.do?page='+page+"&rows="+rows, searchEntity);
-	}    
+	}
+    //删除
+    this.dele=function(ids){
+        return $http.get('../goods/delete.do?ids='+ids);
+    }
 	
 	this.updateStatus = function(ids,status){
 		return $http.get('../goods/updateStatus.do?ids='+ids+"&status="+status);
@@ -35,7 +39,7 @@ app.service('goodsService',function($http){
         return $http.get('../goods/marketableStatus.do?ids='+ids+"&marketable="+marketable);
     }
     //下架
-    this.dele=function(ids){
-        return $http.get('../goods/delete.do?ids='+ids);
+    this.downdele=function(ids){
+        return $http.get('../goods/downdele.do?ids='+ids);
     }
 });
