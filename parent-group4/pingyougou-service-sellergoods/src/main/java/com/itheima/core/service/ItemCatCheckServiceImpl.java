@@ -6,11 +6,13 @@ import com.github.pagehelper.PageHelper;
 import com.itheima.core.ItemCatCheckService;
 import com.itheima.core.dao.item.ItemCatCheckDao;
 import com.itheima.core.dao.item.ItemCatDao;
+import com.itheima.core.dao.seller.SellerDao;
 import com.itheima.core.dao.template.TypeTemplateDao;
 import com.itheima.core.pojo.item.ItemCat;
 import com.itheima.core.pojo.item.ItemCatCheck;
 import com.itheima.core.pojo.item.ItemCatCheckQuery;
 import com.itheima.core.pojo.item.ItemCatQuery;
+import com.itheima.core.pojo.seller.Seller;
 import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,6 +28,8 @@ public class ItemCatCheckServiceImpl implements ItemCatCheckService {
     private ItemCatDao itemCatDao;
     @Autowired
     private ItemCatCheckDao itemCatCheckDao;
+    @Autowired
+    private SellerDao sellerDao;
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
@@ -56,9 +60,15 @@ public class ItemCatCheckServiceImpl implements ItemCatCheckService {
     }
 
     @Override
-    public void add(ItemCat itemCat, String name) {
-        ItemCatCheckQuery query = new ItemCatCheckQuery();
-        itemCatDao.insertSelective(itemCat);
+    public void add(ItemCatCheck itemCat, String name) {
+        ItemCat cat = new ItemCat();
+        cat.setName(itemCat.getName());
+        cat.setTypeId(35L);
+        itemCatDao.insertSelective(cat);
+        itemCat.setSellerId(name);
+        Seller seller = sellerDao.selectByPrimaryKey(name);
+        itemCat.setSellerName(seller.getName());
+        itemCatCheckDao.insertSelective(itemCat);
     }
 
     @Override
