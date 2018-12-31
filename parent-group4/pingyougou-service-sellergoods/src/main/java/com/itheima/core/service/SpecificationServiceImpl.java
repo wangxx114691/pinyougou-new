@@ -4,12 +4,10 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.itheima.core.SpecificationService;
+import com.itheima.core.dao.specification.SpecificationCheckDao;
 import com.itheima.core.dao.specification.SpecificationDao;
 import com.itheima.core.dao.specification.SpecificationOptionDao;
-import com.itheima.core.pojo.specification.Specification;
-import com.itheima.core.pojo.specification.SpecificationOption;
-import com.itheima.core.pojo.specification.SpecificationOptionQuery;
-import com.itheima.core.pojo.specification.SpecificationQuery;
+import com.itheima.core.pojo.specification.*;
 import com.itheima.core.pojo.template.TypeTemplate;
 import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +22,11 @@ import java.util.Map;
 public class SpecificationServiceImpl implements SpecificationService {
 
     @Autowired
-    private SpecificationDao specificationDao;
+    private SpecificationCheckDao specificationCheckDao;
     @Autowired
     private SpecificationOptionDao specificationOptionDao;
+    @Autowired
+    private SpecificationDao specificationDao;
 
     @Override
     public PageResult search(Integer page, Integer rows, Specification specification) {
@@ -42,8 +42,8 @@ public class SpecificationServiceImpl implements SpecificationService {
 
     @Override
     public void add(SpecificationVo specificationVo) {
-        specificationDao.insertSelective(specificationVo.getSpecification());
-        Long specId = specificationVo.getSpecification().getId();
+        specificationCheckDao.insertSelective(specificationVo.getSpecificationCheck());
+        Long specId = specificationVo.getSpecificationCheck().getId();
 //        SpecificationOptionQuery query = new SpecificationOptionQuery();
 //        SpecificationOptionQuery.Criteria criteria = query.createCriteria();
 //        criteria.andIdIn(vo.getSpecificationOptionList().)
@@ -65,12 +65,12 @@ public class SpecificationServiceImpl implements SpecificationService {
 //        SpecificationQuery.Criteria queryCriteria = query.createCriteria();
 //        if (null != vo.getSpecification() && !"".equals(vo.getSpecification().getSpecName().trim()))
 //            queryCriteria.andSpecNameLike("%" + vo.getSpecification().getSpecName().trim() + "%");
-        Specification specification = vo.getSpecification();
-        if (null != specification && !"".equals(specification.getSpecName().trim())) {
-            Long specId = specification.getId();
+        SpecificationCheck specificationCheck = vo.getSpecificationCheck();
+        if (null != specificationCheck && !"".equals(specificationCheck.getName().trim())) {
+            Long specId = specificationCheck.getId();
             // 首先更新主表的specName
-            specification.setSpecName(specification.getSpecName().trim());
-            specificationDao.updateByPrimaryKey(specification);
+            specificationCheck.setName(specificationCheck.getName().trim());
+            specificationCheckDao.updateByPrimaryKey(specificationCheck);
 
             // 获取表单中的SpecificationOption集合
             List<SpecificationOption> specificationOptionList = vo.getSpecificationOptionList();
@@ -90,8 +90,8 @@ public class SpecificationServiceImpl implements SpecificationService {
     @Override
     public SpecificationVo findOne(Long id) {
         SpecificationVo vo = new SpecificationVo();
-        Specification specification = specificationDao.selectByPrimaryKey(id);
-        vo.setSpecification(specification);
+        SpecificationCheck specificationCheck = specificationCheckDao.selectByPrimaryKey(id);
+        vo.setSpecificationCheck(specificationCheck);
         SpecificationOptionQuery query = new SpecificationOptionQuery();
         query.createCriteria().andSpecIdEqualTo(id);
         // 增加根据orders排序的功能, 添加顺序可以改不了,这能通过查询的条件的限制来控制输出的顺序
@@ -129,7 +129,7 @@ public class SpecificationServiceImpl implements SpecificationService {
             SpecificationOptionQuery.Criteria criteria = query.createCriteria();
             criteria.andSpecIdEqualTo(id);
             specificationOptionDao.deleteByExample(query);
-            specificationDao.deleteByPrimaryKey(id);
+            specificationCheckDao.deleteByPrimaryKey(id);
         }
 
     }

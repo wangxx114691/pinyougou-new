@@ -1,12 +1,12 @@
 // 定义控制器:
-app.controller("specCheckController.js",function($scope,$controller,$http,specCheckService){
+app.controller("brandController",function($scope,$controller,$http,brandService){
 	// AngularJS中的继承:伪继承
 	$controller('baseController',{$scope:$scope});
 	
 	// 查询所有的品牌列表的方法:
 	$scope.findAll = function(){
 		// 向后台发送请求:
-        specCheckService.findAll().success(function(response){
+		brandService.findAll().success(function(response){
 			$scope.list = response;
 		});
 	}
@@ -14,7 +14,7 @@ app.controller("specCheckController.js",function($scope,$controller,$http,specCh
 	// 分页查询
 	$scope.findPage = function(page,rows){
 		// 向后台发送请求获取数据:
-        specCheckService.findPage(page,rows).success(function(response){
+		brandService.findPage(page,rows).success(function(response){
 			$scope.paginationConf.totalItems = response.total;
 			$scope.list = response.rows;
 		});
@@ -26,10 +26,10 @@ app.controller("specCheckController.js",function($scope,$controller,$http,specCh
 		var object;
 		if($scope.entity.id != null){
 			// 更新
-			object = specCheckService.update($scope.entity);
+			object = brandService.update($scope.entity);
 		}else{
 			// 保存
-			object = specCheckService.add($scope.entity);
+			object = brandService.add($scope.entity);
 		}
 		object.success(function(response){
 			// {flag:true,message:xxx}
@@ -47,7 +47,7 @@ app.controller("specCheckController.js",function($scope,$controller,$http,specCh
 	
 	// 查询一个:
 	$scope.findById = function(id){
-        specCheckService.findOne(id).success(function(response){
+		brandService.findOne(id).success(function(response){
 			// {id:xx,name:yy,firstChar:zz}
 			$scope.entity = response;
 		});
@@ -55,7 +55,7 @@ app.controller("specCheckController.js",function($scope,$controller,$http,specCh
 	
 	// 删除品牌:
 	$scope.dele = function(){
-        specCheckService.dele($scope.selectIds).success(function(response){
+		brandService.dele($scope.selectIds).success(function(response){
 			// 判断保存是否成功:
 			if(response.flag==true){
 				// 保存成功
@@ -69,15 +69,15 @@ app.controller("specCheckController.js",function($scope,$controller,$http,specCh
 		});
 	}
 	
-	// $scope.searchEntity={};
-	//
-	// // 假设定义一个查询的实体：searchEntity
-	// $scope.search = function(page,rows){
-	// 	// 向后台发送请求获取数据:
-	// 	brandService.search(page,rows,$scope.searchEntity).success(function(response){
-	// 		$scope.paginationConf.totalItems = response.total;
-	// 		$scope.list = response.rows;
-	// 	});
-	// }
+	$scope.searchEntity={};
+	
+	// 假设定义一个查询的实体：searchEntity
+	$scope.search = function(page,rows){
+		// 向后台发送请求获取数据:
+		brandService.search(page,rows,$scope.searchEntity).success(function(response){
+			$scope.paginationConf.totalItems = response.total;
+			$scope.list = response.rows;
+		});
+	}
 	
 });

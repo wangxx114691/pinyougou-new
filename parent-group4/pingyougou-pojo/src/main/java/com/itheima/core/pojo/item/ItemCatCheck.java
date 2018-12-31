@@ -16,7 +16,7 @@ public class ItemCatCheck implements Serializable {
     private String name;
 
     /**
-     * 分裂详情
+     * 分类详情
      */
     private String cartDesc;
 
