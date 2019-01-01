@@ -278,4 +278,8 @@
       check_status = #{checkStatus,jdbcType=CHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectOptionList" resultType="map">
+    SELECT id,name text from tb_type_template
+  </select>
 </mapper>

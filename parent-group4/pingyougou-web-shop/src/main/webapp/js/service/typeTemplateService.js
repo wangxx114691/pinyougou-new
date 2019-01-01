@@ -2,8 +2,8 @@
 app.service('typeTemplateService',function($http){
 	    	
 	//读取列表数据绑定到表单中
-	this.findAll=function(){
-		return $http.get('../typeTemplate/findAll.do');		
+	this.findAll=function(page,rows,searchEntity){
+		return $http.get('../typeCheck/findAll.do?page='+page+"&rows="+rows, searchEntity);
 	}
 	//分页 
 	this.findPage=function(page,rows){
@@ -13,14 +13,25 @@ app.service('typeTemplateService',function($http){
 	this.findOne=function(id){
 		return $http.get('../typeTemplate/findOne.do?id='+id);
 	}
+    this.findOne2=function(id){
+        return $http.get('../typeCheck/findOne.do?id='+id);
+    }
+
 	//增加 
 	this.add=function(entity){
 		return  $http.post('../typeTemplate/add.do',entity );
 	}
+    this.add2=function(entity){
+        return  $http.post('../typeCheck/add.do',entity );
+    }
 	//修改 
 	this.update=function(entity){
 		return  $http.post('../typeTemplate/update.do',entity );
 	}
+    this.update2=function(entity){
+        return  $http.post('../typeCheck/update.do',entity );
+    }
+
 	//删除
 	this.dele=function(ids){
 		return $http.get('../typeTemplate/delete.do?ids='+ids);

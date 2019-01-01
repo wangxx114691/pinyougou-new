@@ -5,6 +5,7 @@ import com.itheima.core.pojo.specification.SpecificationCheckQuery;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SpecificationCheckDao {
     int countByExample(SpecificationCheckQuery example);
@@ -28,4 +29,6 @@ public interface SpecificationCheckDao {
     int updateByPrimaryKeySelective(SpecificationCheck record);
 
     int updateByPrimaryKey(SpecificationCheck record);
+
+    List<Map> selectOptionList(String name);
 }
