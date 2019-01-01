@@ -33,5 +33,12 @@ app.controller('userController' ,function($scope,$controller   ,userService){
                 }
             );
         }
+    //完善信息
+    $scope.save($scope.entity).success(
+        function(response){
+            alert(response.message);
+            // location.href="http://localhost:9104";
+        }
+    );
 	
 });	

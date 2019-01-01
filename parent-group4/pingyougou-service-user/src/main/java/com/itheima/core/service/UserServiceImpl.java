@@ -2,14 +2,17 @@ package com.itheima.core.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.itheima.core.UserService;
+import com.itheima.core.dao.user.User2Dao;
 import com.itheima.core.dao.user.UserDao;
 import com.itheima.core.pojo.user.User;
+import com.itheima.core.pojo.user.User2;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.transaction.annotation.Transactional;
+import pojogroup.UserVo;
 
 import javax.jms.*;
 import java.util.Date;
@@ -27,6 +30,8 @@ public class UserServiceImpl implements UserService {
     private RedisTemplate redisTemplate;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private User2Dao user2Dao;
 
     /**
      * 这个是用户获取验证码的方法
@@ -75,5 +80,20 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("验证码已失效");
         }
     }
-    // 发送验证码
+
+    @Override
+    public UserVo save(User2 user2,User user) {
+        UserVo userVo = new UserVo();
+        userVo.setId(user.getId());
+        userVo.setNickName(user.getNickName());
+        userVo.setBirthday(user.getBirthday());
+        userVo.setUadress(user2.getUadress());
+        userVo.setJob(user2.getJob());
+        userVo.setHeadPic(user.getHeadPic());
+        userDao.insertSelective(user);
+        user2Dao.insertSelective(user2);
+        return userVo;
+
+    }
+
 }
