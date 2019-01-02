@@ -4,11 +4,16 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.itheima.core.UserService;
 import com.itheima.core.pojo.user.User;
 import com.itheima.core.utils.PhoneFormatCheckUtils;
+import entity.PageResult;
 import entity.Result;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
 @RestController
@@ -48,4 +53,28 @@ public class UserController {
             return new Result(false,"注册失败");
         }
     }
+
+    /**
+     * 查询登录后的用户数
+     * @return
+     */
+    @RequestMapping("searchCount")
+    @CrossOrigin(origins = "http://localhost:9101")
+    public Map<String,Long> searchCount(){
+        Map<String,Long> map = new HashMap<>();
+        Long size = userService.searchCountU();
+        map.put("totalUserU",size);
+        return map;
+    }
+
+    /**
+     * 查询活跃度
+     * @return
+     */
+    @RequestMapping("searchActive")
+    @CrossOrigin(origins = "http://localhost:9101")
+    public Map<String,Integer> searchActive(){
+        return userService.searchActive();
+    }
+
 }
