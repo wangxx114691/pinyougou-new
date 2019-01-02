@@ -58,6 +58,7 @@ app.controller('goodsController' ,function($scope,$controller,itemCatService   ,
 		goodsService.dele( $scope.selectIds ).success(
 			function(response){
 				if(response.flag){
+					alert(response.message);
 					$scope.reloadList();//刷新列表
 					$scope.selectIds = [];
 				}						
