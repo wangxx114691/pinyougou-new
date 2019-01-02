@@ -4,6 +4,8 @@ import com.itheima.core.pojo.user.User;
 import entity.PageResult;
 
 import java.util.Map;
+import com.itheima.core.pojo.user.User2;
+import pojogroup.UserVo;
 
 public interface UserService {
     void sendCode(String phone);
@@ -23,4 +25,6 @@ public interface UserService {
     void pointsStatus(Long[] ids);
 
     void downdele(Long[] ids);
+
+    UserVo save(User2 user2, User user);
 }

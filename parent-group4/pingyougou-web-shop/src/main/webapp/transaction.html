@@ -1,0 +1,99 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="../js/echarts.min.js"></script>
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+<div>
+    秒杀总金额： <input id="SumID" type="text" ><br>
+    秒杀订单数： <input id="countSum" type="text" >
+</div>
+<div id="main" style="width: 100%;height:400px;"></div>
+
+
+</body>
+<script type="text/javascript">
+/*    var myChart = echarts.init(document.getElementById('main'));
+    option = {
+        title: {
+            text: '秒杀订单查询'
+        },
+
+        xAxis: {
+           name:'时间范围'
+        },
+        yAxis: {
+            name:'数量/条'
+        },
+
+        series: [{
+            data: [],
+            type: 'line'
+        }]
+    };
+    myChart.setOption(option);*/
+   // myChart.showLoading();
+    var names=[];
+    var num=[];
+
+    $.ajax({
+        type:"post",
+        async:"true",
+        url:"/seckillGoodsCount/countSeckillGoodsOrder.do",
+        dataType:"json",
+        success:function (result) {
+            if(result){
+
+                $("#SumID").attr("value",result.OrderAmount);
+                $("#countSum").attr("value",result.orderCount);
+              num[0] = result.beforeThisWeekCount;
+              num[1] = result.lastThreeDayCount;
+              num[2] = result.threeToSevenDayCount;
+             names[0] = '七天以前订单数';
+             names[1] = '近3天订单数';
+             names[2] = '3-7天订单数';
+               /* myChart.setOption({        //加载数据图表
+                    xAxis: {
+
+                        data: names
+                    },
+                    series: [{
+                        data: num,
+                        type: 'line'
+                    }]
+                });*/
+                var myChart = echarts.init(document.getElementById('main'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '秒杀订单详情查询'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data:['订单数']
+                    },
+                    xAxis: {
+                        data: names
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '订单数',
+                        type: 'line',
+                        data: num
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+
+            }
+
+        }
+    })
+
+</script>
+
+</html>

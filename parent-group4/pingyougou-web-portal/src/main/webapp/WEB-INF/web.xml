@@ -31,9 +31,6 @@
       org.springframework.web.context.ContextLoaderListener
     </listener-class>
   </listener>
-  <listener>
-    <listener-class>com.itheima.core.listener.OnlineListener</listener-class>
-  </listener>
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

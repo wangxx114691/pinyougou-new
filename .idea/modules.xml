@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/parent.iml" filepath="$PROJECT_DIR$/parent-group4/parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-common/pingyougou-common.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-common/pingyougou-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-dao/pingyougou-dao.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-dao/pingyougou-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-interface/pingyougou-interface.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-interface/pingyougou-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-pojo/pingyougou-pojo.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-pojo/pingyougou-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-service-buyer/pingyougou-service-buyer.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-service-buyer/pingyougou-service-buyer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-service-page/pingyougou-service-page.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-service-page/pingyougou-service-page.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-service-search/pingyougou-service-search.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-service-search/pingyougou-service-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-service-sellergoods/pingyougou-service-sellergoods.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-service-sellergoods/pingyougou-service-sellergoods.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-service-user/pingyougou-service-user.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-service-user/pingyougou-service-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-web-manager/pingyougou-web-manager.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-web-manager/pingyougou-web-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-web-portal/pingyougou-web-portal.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-web-portal/pingyougou-web-portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-web-shop/pingyougou-web-shop.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-web-shop/pingyougou-web-shop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-group4/pingyougou-web-user/pingyougou-web-user.iml" filepath="$PROJECT_DIR$/parent-group4/pingyougou-web-user/pingyougou-web-user.iml" />
+    </modules>
+  </component>
+</project>

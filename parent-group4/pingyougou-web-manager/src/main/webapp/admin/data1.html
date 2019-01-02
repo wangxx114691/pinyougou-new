@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<button id="js-export" type="button" class="btn btn-primary">导出Excel</button>
+
+</body>
+<script>
+    $('#js-export').click(function(){
+        window.location.href="http://localhost:9101/file/export.do";
+    });
+</script>

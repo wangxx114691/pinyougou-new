@@ -20,4 +20,5 @@ public interface GoodsService {
     void downdele(Long[] ids);
 
     void marketableStatus(Long[] ids, String marketable);
+
 }

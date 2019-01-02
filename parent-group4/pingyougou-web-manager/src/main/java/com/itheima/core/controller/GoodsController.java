@@ -63,7 +63,7 @@ public class GoodsController {
         try {
             goodsService.updateStatus(ids,status);
             return new Result(true,"操作成功");
-        } catch (Exception e) {
+        } catch (Exception e) {;
             e.printStackTrace();
             return new Result(false,"操作失败");
         }
@@ -78,8 +78,8 @@ public class GoodsController {
             e.printStackTrace();
             return new Result(false,"操作失败");
         }
-    }
 
+    }
     @RequestMapping("downdele")
     public Result downdele(Long[] ids){
         try {
@@ -90,6 +90,7 @@ public class GoodsController {
             return new Result(false,"操作失败");
         }
     }
+
     @RequestMapping("marketableStatus")
     public Result marketableStatus(Long[] ids,String marketable){
         try {

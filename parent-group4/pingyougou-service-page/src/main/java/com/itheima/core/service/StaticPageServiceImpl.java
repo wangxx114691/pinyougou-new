@@ -59,7 +59,6 @@ public class StaticPageServiceImpl implements StaticPageService, ServletContextA
         root.put("itemCat3", itemCatDao.selectByPrimaryKey(goods.getCategory3Id()).getName());
         try {
             Template template = conf.getTemplate("item.ftl");   // 获取模板
-
             out = new OutputStreamWriter(new FileOutputStream(AbsPath), "utf-8");//获取输出流
             template.process(root, out);// 处理数据
         } catch (Exception e) {

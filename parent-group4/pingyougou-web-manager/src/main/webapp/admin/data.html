@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品分类管理</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- 引入angular的js -->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+    <script type="text/javascript" src="../js/controller/poiController.js">  </script>
+    <script type="text/javascript" src="../js/service/poiService.js"></script>
+
+
+
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="poiController">
+    <form class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-2">品牌文件：</label>
+        <div class="formControls col-xs-8 col-sm-9">
+            <span class="btn-upload form-group">
+            <input class="input-text upload-url" type="text" ng-model="file" id="uploadfile" readonly nullmsg="请添加附件！" style="width:200px">
+            <input type="file" multiple name="file" ng-model="file" class="input-file" id="file">
+            </span> </div>
+    </div>
+    <div class="row cl">
+        <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+            <button ng-click="addBrands();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 导入品牌数据</button>
+            <button ng-click="refresh()" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+        </div>
+    </div>
+</form>
+
+<form class="form form-horizontal" id="form-article-add1" enctype="multipart/form-data">
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-2">规格文件：</label>
+        <div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">
+            <input class="input-text upload-url" ng-model="file1" type="text" name="file1" id="uploadfile1" readonly nullmsg="请添加附件！" style="width:200px">
+            <input type="file" multiple name="file1" ng-model="file1" class="input-file" id="file1">
+        </span> </div>
+    </div>
+    <div class="row cl">
+        <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+            <button ng-click="addSpecifications();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 导入规格数据</button>
+            <button ng-click="cancel();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+        </div>
+    </div>
+</form>
+
+<form class="form form-horizontal" id="form-article-add2" enctype="multipart/form-data">
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-2">分类文件：</label>
+        <div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">
+				<input class="input-text upload-url" type="text"  ng-model="file2" name="file2" id="uploadfile2" readonly nullmsg="请添加附件！" style="width:200px">
+					<input type="file" multiple name="file2" ng-model="file2" class="input-file" id="file2">
+				</span> </div>
+    </div>
+    <div class="row cl">
+        <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+            <button ng-click="addTemplates();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 导入分类数据</button>
+            <button ng-click="cancel();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+        </div>
+    </div>
+</form>
+
+<form class="form form-horizontal" id="form-article-add3" enctype="multipart/form-data">
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-2">模板文件：</label>
+        <div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">
+				<input class="input-text upload-url" type="text" ng-model="file3" name="uploadfile3" id="uploadfile3" readonly nullmsg="请添加附件！" style="width:200px">
+					<input type="file" multiple name="file3" ng-model="file3" class="input-file" id="file3">
+				</span> </div>
+    </div>
+    <div class="row cl">
+        <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+            <button ng-click="addCategorys();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 导入模板数据</button>
+            <button ng-click="cancel();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+        </div>
+    </div>
+</form>
+</body>
+
+
+

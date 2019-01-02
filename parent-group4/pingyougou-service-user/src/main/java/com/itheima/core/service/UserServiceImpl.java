@@ -4,17 +4,20 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.itheima.core.UserService;
+import com.itheima.core.dao.user.User2Dao;
 import com.itheima.core.dao.user.UserDao;
 import com.itheima.core.pojo.good.Goods;
 import com.itheima.core.pojo.user.User;
 import com.itheima.core.pojo.user.UserQuery;
 import entity.PageResult;
+import com.itheima.core.pojo.user.User2;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.transaction.annotation.Transactional;
+import pojogroup.UserVo;
 
 import javax.jms.*;
 import java.util.Date;
@@ -35,6 +38,8 @@ public class UserServiceImpl implements UserService {
     private RedisTemplate redisTemplate;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private User2Dao user2Dao;
 
     /**
      * 这个是用户获取验证码的方法
@@ -53,10 +58,10 @@ public class UserServiceImpl implements UserService {
             @Override
             public Message createMessage(Session session) throws JMSException {
                 MapMessage mapMessage = session.createMapMessage();
-                mapMessage.setString("phone", phone);
-                mapMessage.setString("templateCode", "SMS_126462276");//SMS_126462276
-                mapMessage.setString("signName", "品优购商城");
-                mapMessage.setString("templateParam", "{\"number\":\"" + code + "\"}");
+                mapMessage.setString("phone",phone);
+                mapMessage.setString("templateCode","SMS_126462276");//SMS_126462276
+                mapMessage.setString("signName","品优购商城");
+                mapMessage.setString("templateParam","{\"number\":\""+code+"\"}");
                 return mapMessage;
             }
         });
@@ -175,4 +180,20 @@ public class UserServiceImpl implements UserService {
             userDao.updateByPrimaryKeySelective(user);
         }
     }
+
+    @Override
+    public UserVo save(User2 user2,User user) {
+        UserVo userVo = new UserVo();
+        userVo.setId(user.getId());
+        userVo.setNickName(user.getNickName());
+        userVo.setBirthday(user.getBirthday());
+        userVo.setUadress(user2.getUadress());
+        userVo.setJob(user2.getJob());
+        userVo.setHeadPic(user.getHeadPic());
+        userDao.insertSelective(user);
+        user2Dao.insertSelective(user2);
+        return userVo;
+
+    }
+
 }

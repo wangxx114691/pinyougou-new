@@ -14,7 +14,6 @@
     <http pattern="/content/*.do" security="none"></http>
     <http pattern="/itemsearch/*.do" security="none"></http>
  	<http pattern="/cart.html" security="none"></http>
- 	<http pattern="/user/searchCount.do" security="none"></http>
     <!--之前是为了演示单点登录所以把这个注掉了, 现在要使用游客身份浏览购物车, 所以得把上面这一行这个放行-->
     	
 	<!--   entry-point-ref  入口点引用 -->
@@ -70,8 +69,7 @@
         <beans:property name="key" value="an_id_for_this_auth_provider_only"/> 
     </beans:bean>        
    		 <!-- 认证类 -->
-    <beans:bean id="userDetailsService" class="com.itheima.core.service.UserDetailServiceImpl">
-    </beans:bean>
+	<beans:bean id="userDetailsService" class="com.itheima.core.service.UserDetailServiceImpl"/>
 	
 	<!-- 认证过滤器 结束 -->
 	

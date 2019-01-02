@@ -5,13 +5,18 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.itheima.core.ContentService;
 import com.itheima.core.dao.ad.ContentDao;
+import com.itheima.core.dao.good.BrandDao;
+import com.itheima.core.dao.item.MyItemCatDao;
 import com.itheima.core.pojo.ad.Content;
 import com.itheima.core.pojo.ad.ContentQuery;
+import com.itheima.core.pojo.good.Brand;
+import com.itheima.core.pojo.item.ItemCat;
 import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -88,6 +93,52 @@ public class ContentServiceImpl implements ContentService {
 			redisTemplate.boundHashOps("content").expire(24, TimeUnit.HOURS);	// expire设置Redis中的保存时间
 		}
 		return contents;
+    }
+    @Autowired
+    private MyItemCatDao myItemCatDao;
+
+    @Override
+    public List<ItemCat> findByParentId() {
+		List<ItemCat> itemCatList = (List<ItemCat>) redisTemplate.boundHashOps("itemCat").get("indexItemCat");
+
+		//如果缓存中没有数据，则从数据库查询再存入缓存
+		if(itemCatList==null){
+			//查询出1级商品分类
+			List<ItemCat> itemCatList1 = myItemCatDao.findItemCatListByParentId((long) 0);
+			//遍历
+			for(ItemCat itemCat1:itemCatList1){
+				//查询2级
+				List<ItemCat> itemCatList2 = myItemCatDao.findItemCatListByParentId(itemCat1.getId());
+				//遍历
+				for(ItemCat itemCat2:itemCatList2){
+					//查询3级
+					List<ItemCat> itemCatList3 = myItemCatDao.findItemCatListByParentId(itemCat2.getId());
+					itemCat2.setItemCatList(itemCatList3);
+				}
+				itemCat1.setItemCatList(itemCatList2);
+			}
+			//存入缓存
+			redisTemplate.boundHashOps("itemCat").put("indexItemCat",itemCatList1);
+			return itemCatList1;
+		}
+		//到这一步，说明缓存中有数据，直接返回
+		return itemCatList;
+    }
+@Autowired
+private BrandDao brandDao;
+    @Override
+    public List<Brand> findBrandName() {
+		List<Brand> brands = (List<Brand>) redisTemplate.boundHashOps("findBrandName").get("findBrandName");
+		if (brands == null) {
+			brands = new ArrayList<>();
+			List<Brand> brandList = brandDao.selectByExample(null);
+			for (int i = 0; i < 6; i++) {
+				Brand brand = brandList.get(i);
+				brands.add(brand);
+			}
+			redisTemplate.boundHashOps("findBrandName").put("findBrandName", brands);
+		}
+		return brands;
     }
 
 }
