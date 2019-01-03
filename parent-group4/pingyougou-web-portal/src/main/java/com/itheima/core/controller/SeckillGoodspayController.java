@@ -1,8 +1,9 @@
-package com.zero.chn.core.controller;
+package com.itheima.core.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.zero.chn.Utils.Result;
-import com.zero.chn.core.service.SeckillGoodspayService;
+
+import com.itheima.core.SeckillGoodspayService;
+import entity.Result;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,25 +1,25 @@
-package com.zero.chn.core.service;
+package com.itheima.core.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.zero.chn.PackagePojo.seckillGoodVO;
-import com.zero.chn.core.dao.good.GoodsDao;
-import com.zero.chn.core.dao.good.GoodsDescDao;
-import com.zero.chn.core.dao.item.ItemDao;
-import com.zero.chn.core.dao.seckill.SeckillGoodsDao;
-import com.zero.chn.core.pojo.good.Goods;
-import com.zero.chn.core.pojo.good.GoodsDesc;
-import com.zero.chn.core.pojo.item.Item;
-import com.zero.chn.core.pojo.item.ItemQuery;
-import com.zero.chn.core.pojo.seckill.SeckillGoods;
-import com.zero.chn.core.pojo.seckill.SeckillGoodsQuery;
+
+import com.itheima.core.dao.good.GoodsDao;
+import com.itheima.core.dao.good.GoodsDescDao;
+import com.itheima.core.dao.item.ItemDao;
+import com.itheima.core.dao.seckill.SeckillGoodsDao;
+import com.itheima.core.pojo.good.Goods;
+import com.itheima.core.pojo.good.GoodsDesc;
+import com.itheima.core.pojo.good.seckillGoodVO;
+import com.itheima.core.pojo.item.Item;
+import com.itheima.core.pojo.item.ItemQuery;
+import com.itheima.core.pojo.seckill.SeckillGoods;
+import com.itheima.core.seckillGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Service
 public class seckillGoodsServiceImpl implements seckillGoodsService {

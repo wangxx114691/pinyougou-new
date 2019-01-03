@@ -55,4 +55,22 @@ public class BrandCheckServiceImpl implements BrandCheckService {
     public BrandCheck findOne(Long id) {
         return brandCheckDao.selectByPrimaryKey(id);
     }
+
+    @Override
+    public PageResult search(Integer page, Integer rows) {
+        PageHelper.startPage(page,rows);
+        Page<BrandCheck> p = (Page<BrandCheck>) brandCheckDao.selectByExample(null);
+        return new PageResult(p.getTotal(),p.getResult());
+    }
+
+    @Override
+    public void updateStatus(Long[] ids, String status) {
+        BrandCheck brandCheck = new BrandCheck();
+        brandCheck.setCheckStatus(status);
+        for (Long id : ids) {
+            brandCheck.setId(id);
+            brandCheckDao.updateByPrimaryKeySelective(brandCheck);
+        }
+    }
+
 }

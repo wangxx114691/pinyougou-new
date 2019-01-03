@@ -1,13 +1,13 @@
-package com.zero.chn.core.service;
+package com.itheima.core.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.wxpay.sdk.WXPayUtil;
-import com.zero.chn.core.dao.seckill.SeckillOrderDao;
-import com.zero.chn.core.pojo.seckill.SeckillGoods;
-import com.zero.chn.core.pojo.seckill.SeckillGoodsQuery;
-import com.zero.chn.core.pojo.seckill.SeckillOrder;
-import com.zero.chn.core.pojo.seckill.SeckillOrderQuery;
-import com.zero.chn.utils.HttpClient;
+import com.itheima.core.SeckillGoodspayService;
+
+import com.itheima.core.dao.seckill.SeckillOrderDao;
+import com.itheima.core.pojo.seckill.SeckillOrder;
+import com.itheima.core.pojo.seckill.SeckillOrderQuery;
+import com.itheima.core.utils.HttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 

@@ -4,6 +4,7 @@ import com.itheima.core.pojo.good.Brand;
 import entity.PageResult;
 import entity.Result;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -23,4 +24,6 @@ public interface BrandService {
     PageResult<Brand> search(Integer pageNum, Integer pageSize, Brand brand);
 
     List<Map> selectOptionList();
+
+    void addBrands(File fo) throws Exception;
 }

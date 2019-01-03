@@ -6,3 +6,6 @@ app.filter('trustHtml',['$sce',function($sce){
 		return $sce.trustAsHtml(data);//返回的是过滤后的内容（信任html的转换）
 	}	
 } ]);
+
+
+var ap = angular.module("my",[]);

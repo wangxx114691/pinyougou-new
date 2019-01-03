@@ -1,11 +1,13 @@
-package com.zero.chn.core.service;
+package com.itheima.core.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.zero.chn.core.dao.seckill.SeckillGoodsDao;
-import com.zero.chn.core.dao.seckill.SeckillOrderDao;
-import com.zero.chn.core.pojo.seckill.SeckillGoods;
-import com.zero.chn.core.pojo.seckill.SeckillOrder;
-import com.zero.chn.utils.IdWorker;
+
+import com.itheima.core.dao.seckill.SeckillGoodsDao;
+import com.itheima.core.dao.seckill.SeckillOrderDao;
+import com.itheima.core.pojo.seckill.SeckillGoods;
+import com.itheima.core.pojo.seckill.SeckillOrder;
+import com.itheima.core.seckillOrderService;
+import com.itheima.core.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 

@@ -20,4 +20,8 @@ public interface ItemCatCheckService {
     ItemCatCheck findOne(Long id);
 
     List<ItemCatCheck> findAll();
+
+    PageResult search(Integer page, Integer rows);
+
+    void updateStatus(Long[] ids, String status);
 }

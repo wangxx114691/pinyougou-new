@@ -10,10 +10,19 @@ import com.itheima.core.dao.specification.SpecificationOptionDao;
 import com.itheima.core.pojo.specification.*;
 import com.itheima.core.pojo.template.TypeTemplate;
 import entity.PageResult;
+import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import pojogroup.SpecificationVo;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -137,5 +146,47 @@ public class SpecificationServiceImpl implements SpecificationService {
     @Override
     public List<Map> selectOptionList() {
         return specificationDao.selectOptionList();
+    }
+
+    @Override
+    public void addSpecifications(File fo) throws Exception {
+        List<Specification> list = new ArrayList<>();
+        XSSFWorkbook workbook =null;
+
+        //创建Excel，读取文件内容
+        try {
+            workbook = new XSSFWorkbook(FileUtils.openInputStream(fo));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //获取第一个工作表
+        XSSFSheet sheet = workbook.getSheet("specification");
+
+        //获取sheet中第一行行号
+        int firstRowNum = sheet.getFirstRowNum();
+        //获取sheet中最后一行行号
+        int lastRowNum = sheet.getLastRowNum();
+
+        //循环插入数据
+        for(int i=firstRowNum+1;i<=lastRowNum;i++){
+            XSSFRow row = sheet.getRow(i);
+
+            Specification specification = new Specification();
+
+            XSSFCell name = row.getCell(1);//name
+            if(name!=null){
+                name.setCellType(Cell.CELL_TYPE_STRING);
+                specification.setSpecName((name.getStringCellValue()));
+            }
+
+            list.add(specification);
+        }
+        for (int i = 0; i < list.size(); i++) {
+            Specification specification =  list.get(i);
+            specificationDao.insertSelective(specification);//往数据库插入数据
+        }
+
+        workbook.close();
+
     }
 }

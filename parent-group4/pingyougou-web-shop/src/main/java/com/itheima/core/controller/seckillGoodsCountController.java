@@ -1,21 +1,22 @@
-package com.zero.chn.core.controller;
+package com.itheima.core.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.zero.chn.core.service.seckillGoodsCountService;
 
+
+import com.itheima.core.seckillGoodsCountService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+
 import java.util.Map;
 
 @RestController
 @RequestMapping("seckillGoodsCount")
 public class seckillGoodsCountController {
     @Reference
-    private seckillGoodsCountService  seckillGoodsCountService;
+    private   seckillGoodsCountService seckillGoodsCountService;
 
     @RequestMapping("countSeckillGoodsOrder")
     private Map<String,Integer>  countSeckillGoodsOrder(){

@@ -2,8 +2,96 @@ package com.itheima.core.pojo.good;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class Goods implements Serializable {
+
+
+    /**
+     * 商城秒杀价
+     * */
+    private BigDecimal costPrice;
+
+    public BigDecimal getCostPrice() {
+        return costPrice;
+    }
+
+    public void setCostPrice(BigDecimal costPrice) {
+        this.costPrice = costPrice;
+    }
+
+    /**
+     *秒杀开始时间
+     * */
+
+    private Date startTime ;
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     * 秒杀结束时间
+     */
+    private Date endTime;
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    /**
+     * 秒杀商品数
+     * */
+    private int num;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    /**
+     * 秒杀剩余库存数
+     * */
+
+    private int stockCount;
+
+    public int getStockCount() {
+        return stockCount;
+    }
+
+    public void setStockCount(int stockCount) {
+        this.stockCount = stockCount;
+    }
+    /**
+     * 秒杀商品介绍
+     * */
+    private String introduction;
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+
+
+
+
+
+
     /**
      * 主键
      */

@@ -5,11 +5,15 @@ import com.itheima.core.BrandService;
 import com.itheima.core.pojo.good.Brand;
 import entity.PageResult;
 import entity.Result;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -90,5 +94,22 @@ public class BrandController {
     @RequestMapping("selectOptionList")
     public List<Map> selectOptionList(){    // 为什么这里不用PageResult进行封装,的原因是这里PageResult只有在查询分页时才使用
         return brandService.selectOptionList();
+    }
+
+    @RequestMapping("/addBrands")
+    public Result addBrands(MultipartFile file){
+
+        try {
+            //把MultipartFile转化为File
+            CommonsMultipartFile cmf= (CommonsMultipartFile)file;
+            DiskFileItem dfi=(DiskFileItem) cmf.getFileItem();
+            File fo=dfi.getStoreLocation();
+            // file.getOriginalFilename();
+            brandService.addBrands(fo);
+            return new Result(true,"文件上传完成");   // 注意成功则返回url, 而不是成功信息方便图片通过src回显
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"文件上传失败");
+        }
     }
 }

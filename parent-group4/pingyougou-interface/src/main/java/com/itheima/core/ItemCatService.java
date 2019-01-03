@@ -3,6 +3,7 @@ package com.itheima.core;
 import com.itheima.core.pojo.item.ItemCat;
 import entity.PageResult;
 
+import java.io.File;
 import java.util.List;
 
 public interface ItemCatService {
@@ -19,4 +20,6 @@ public interface ItemCatService {
     ItemCat findOne(Long id);
 
     List<ItemCat> findAll();
+
+    void addCategorys(File fo) throws Exception;
 }

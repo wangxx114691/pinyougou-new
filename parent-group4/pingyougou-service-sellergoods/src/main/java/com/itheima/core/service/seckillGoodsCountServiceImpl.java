@@ -1,16 +1,18 @@
-package com.zero.chn.core.service;
+package com.itheima.core.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 
-import com.zero.chn.core.dao.seckill.SeckillOrderDao;
-import com.zero.chn.core.pojo.seckill.SeckillOrder;
-import com.zero.chn.core.pojo.seckill.SeckillOrderQuery;
+
+import com.itheima.core.dao.seckill.SeckillOrderDao;
+import com.itheima.core.pojo.seckill.SeckillOrder;
+import com.itheima.core.pojo.seckill.SeckillOrderQuery;
+import com.itheima.core.seckillGoodsCountService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
 @Service
-public class seckillGoodsCountServiceImpl implements seckillGoodsCountService  {
+public class seckillGoodsCountServiceImpl implements seckillGoodsCountService {
 
     @Autowired
     private SeckillOrderDao seckillOrderDao;

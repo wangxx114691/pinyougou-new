@@ -9,9 +9,18 @@ import com.itheima.core.pojo.good.Brand;
 import com.itheima.core.pojo.good.BrandQuery;
 import entity.PageResult;
 import org.apache.activemq.broker.BrokerFactory;
+import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -90,5 +99,70 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public List<Map> selectOptionList() {
         return brandDao.selectOptionList();
+    }
+
+    @Override
+    public void addBrands(File fo) throws Exception {
+
+        List<Brand> list = new ArrayList<>();
+        XSSFWorkbook workbook = null;
+
+
+        //创建Excel，读取文件内容
+        try {
+            workbook = new XSSFWorkbook(FileUtils.openInputStream(fo));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //获取第一个工作表
+        XSSFSheet sheet = workbook.getSheet("brand");
+
+        //获取sheet中第一行行号
+        int firstRowNum = sheet.getFirstRowNum();
+        //获取sheet中最后一行行号
+        int lastRowNum = sheet.getLastRowNum();
+
+
+        //循环插入数据
+        for (int i = firstRowNum + 1; i <= lastRowNum; i++) {
+            XSSFRow row = sheet.getRow(i);
+
+            Brand brand = new Brand();
+
+
+//                XSSFCell id = row.getCell(0);//id
+//                if(id!=null){
+//                    id.setCellType(Cell.CELL_TYPE_STRING);
+//                    brand.setId();
+//                }
+
+            XSSFCell name = row.getCell(1);//name
+            if (name != null) {
+                name.setCellType(Cell.CELL_TYPE_STRING);
+                brand.setName((name.getStringCellValue()));
+            }
+
+            XSSFCell first_char = row.getCell(2);//first_char
+            if (first_char != null) {
+                first_char.setCellType(Cell.CELL_TYPE_STRING);
+                brand.setFirstChar((first_char.getStringCellValue()));
+            }
+
+//                XSSFCell birthday = row.getCell(3);//birthday
+//                if(birthday.equals("")){
+//                    birthday.setCellType(Cell.CELL_TYPE_STRING);
+//                    brand.setBirthday(null);
+//                }
+            list.add(brand);
+        }
+        for (int i = 0; i < list.size(); i++) {
+            Brand brand = list.get(i);
+            brandDao.insertSelective(brand);//往数据库插入数据
+        }
+
+        workbook.close();
+
+
     }
 }

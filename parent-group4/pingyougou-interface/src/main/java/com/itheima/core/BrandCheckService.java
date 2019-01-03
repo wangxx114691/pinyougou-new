@@ -10,4 +10,8 @@ public interface BrandCheckService {
     PageResult<BrandCheck> search(Integer pageNum, Integer pageSize, BrandCheck brandCheck, String name);
 
     BrandCheck findOne(Long id);
+
+    PageResult search(Integer page, Integer rows);
+
+    void updateStatus(Long[] ids, String status);
 }

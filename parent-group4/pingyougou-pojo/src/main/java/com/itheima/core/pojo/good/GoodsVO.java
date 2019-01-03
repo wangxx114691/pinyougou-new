@@ -1,18 +1,19 @@
-package com.zero.chn.PackagePojo;
+package com.itheima.core.pojo.good;
 
 
-import com.zero.chn.core.pojo.good.Goods;
-import com.zero.chn.core.pojo.good.GoodsDesc;
-import com.zero.chn.core.pojo.item.Item;
 
+
+
+import com.itheima.core.pojo.item.Item;
 
 import java.io.Serializable;
 import java.util.List;
 
+
 public class GoodsVO implements Serializable {
     private Goods goods;
     private GoodsDesc goodsDesc;
-    private List<Item>  itemList;
+    private List<Item> itemList;
 
     public Goods getGoods() {
         return goods;

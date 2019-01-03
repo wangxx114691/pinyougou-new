@@ -1,5 +1,5 @@
-package com.zero.chn.core.service;
+package com.itheima.core;
 
 public interface seckillOrderService {
-    void submitOrder(Long seckillId,String name);
+    void submitOrder(Long seckillId, String name);
 }

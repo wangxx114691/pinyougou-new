@@ -4,6 +4,7 @@ import com.itheima.core.pojo.specification.Specification;
 import entity.PageResult;
 import pojogroup.SpecificationVo;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -19,4 +20,6 @@ public interface SpecificationService {
     void delete(Long[] ids);
 
     List<Map> selectOptionList();
+
+    void addSpecifications(File fo) throws Exception;
 }

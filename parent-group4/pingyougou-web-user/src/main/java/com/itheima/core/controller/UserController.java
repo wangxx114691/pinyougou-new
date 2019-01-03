@@ -6,11 +6,14 @@ import com.itheima.core.pojo.user.User;
 import com.itheima.core.pojo.user.User2;
 import com.itheima.core.utils.PhoneFormatCheckUtils;
 import entity.Result;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pojogroup.UserVo;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
 @RestController
@@ -50,7 +53,6 @@ public class UserController {
             return new Result(false,"注册失败");
         }
     }
-<<<<<<< HEAD
 
     /**
      * 查询登录后的用户数
@@ -80,6 +82,5 @@ public class UserController {
         return userService.save(user2, user);
     }
 
-=======
->>>>>>> parent of 2babc78... 王欣欣提交
+
 }

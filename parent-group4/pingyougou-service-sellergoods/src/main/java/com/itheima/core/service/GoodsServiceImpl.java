@@ -286,23 +286,7 @@ public class GoodsServiceImpl implements GoodsService {
         }
     }
 
-    @Override
-    public void downdele(Long[] ids) {
-        Goods goods = new Goods();
-        goods.setIsMarketable("0");
-        for (Long id : ids) {
-            goods.setId(id);
-            goodsDao.updateByPrimaryKeySelective(goods);
-            // 使用jmsTemplate实现 发消息
-            jmsTemplate.send(queueSolrDeleteDestination , new MessageCreator() {
-                @Override
-                public Message createMessage(Session session) throws JMSException {
-                    return session.createTextMessage(String.valueOf(id));
-                }
-            });
 
-        }
-    }
 
 
 }

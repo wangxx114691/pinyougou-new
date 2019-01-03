@@ -1,7 +1,8 @@
-package com.zero.chn.core.service;
+package com.itheima.core;
 
-import com.zero.chn.PackagePojo.seckillGoodVO;
-import com.zero.chn.core.pojo.seckill.SeckillGoods;
+
+import com.itheima.core.pojo.good.seckillGoodVO;
+import com.itheima.core.pojo.seckill.SeckillGoods;
 
 import java.util.List;
 

@@ -4,10 +4,14 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.itheima.core.ItemCatService;
 import com.itheima.core.pojo.item.ItemCat;
 import entity.Result;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 @RestController
@@ -75,6 +79,23 @@ public class ItemCatController {
         } catch (Exception e) {
             e.printStackTrace();
             return new Result(false,"操作失败");
+        }
+    }
+
+    @RequestMapping("/addCategorys")
+    public Result addCategorys(MultipartFile file3){
+
+        try {
+            //把MultipartFile转化为File
+            CommonsMultipartFile cmf= (CommonsMultipartFile)file3;
+            DiskFileItem dfi=(DiskFileItem) cmf.getFileItem();
+            File fo=dfi.getStoreLocation();
+            // file.getOriginalFilename();
+            itemCatService.addCategorys(fo);
+            return new Result(true,"文件上传完成");   // 注意成功则返回url, 而不是成功信息方便图片通过src回显
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"文件上传失败");
         }
     }
 }

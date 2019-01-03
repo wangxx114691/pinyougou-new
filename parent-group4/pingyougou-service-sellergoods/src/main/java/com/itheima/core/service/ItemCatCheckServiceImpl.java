@@ -96,4 +96,22 @@ public class ItemCatCheckServiceImpl implements ItemCatCheckService {
     public List<ItemCatCheck> findAll() {
         return itemCatCheckDao.selectByExample(null);
     }
+
+    @Override
+    public PageResult search(Integer page, Integer rows) {
+        PageHelper.startPage(page,rows);
+        Page<ItemCatCheck> p= (Page<ItemCatCheck>) itemCatCheckDao.selectByExample(null);
+        return new PageResult(p.getTotal(),p.getResult());
+    }
+
+    @Override
+    public void updateStatus(Long[] ids, String status) {
+        ItemCatCheck itemCatCheck = new ItemCatCheck();
+        itemCatCheck.setCheckStatus(status);
+        for (Long id : ids) {
+            itemCatCheck.setId(id);
+            itemCatCheckDao.updateByPrimaryKeySelective(itemCatCheck);
+        }
+
+    }
 }

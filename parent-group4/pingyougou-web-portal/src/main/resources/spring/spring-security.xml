@@ -14,6 +14,7 @@
     <http pattern="/content/*.do" security="none"></http>
     <http pattern="/itemsearch/*.do" security="none"></http>
  	<http pattern="/cart.html" security="none"></http>
+    <http pattern="/user/searchCount.do" security="none"></http>
     <!--之前是为了演示单点登录所以把这个注掉了, 现在要使用游客身份浏览购物车, 所以得把上面这一行这个放行-->
     	
 	<!--   entry-point-ref  入口点引用 -->

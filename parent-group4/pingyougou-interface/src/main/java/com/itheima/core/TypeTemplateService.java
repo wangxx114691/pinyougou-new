@@ -5,6 +5,7 @@ import com.itheima.core.pojo.template.TypeTemplate;
 import entity.PageResult;
 import entity.Result;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -22,4 +23,6 @@ public interface TypeTemplateService {
     List<Map> selectOptionList();
 
     List<Map> findBySpecList(Long id);
+
+    void addTemplates(File fo) throws Exception;
 }

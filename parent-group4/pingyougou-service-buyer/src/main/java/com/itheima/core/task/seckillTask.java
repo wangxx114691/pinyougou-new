@@ -1,9 +1,10 @@
-package com.zero.chn.core.task;
+package com.itheima.core.task;
 
-import com.zero.chn.core.dao.good.GoodsDescDao;
-import com.zero.chn.core.dao.seckill.SeckillGoodsDao;
-import com.zero.chn.core.pojo.seckill.SeckillGoods;
-import com.zero.chn.core.pojo.seckill.SeckillGoodsQuery;
+
+import com.itheima.core.dao.good.GoodsDescDao;
+import com.itheima.core.dao.seckill.SeckillGoodsDao;
+import com.itheima.core.pojo.seckill.SeckillGoods;
+import com.itheima.core.pojo.seckill.SeckillGoodsQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;

@@ -1,4 +1,4 @@
-package com.zero.chn.core.controller;
+package com.itheima.core.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.zero.chn.Utils.Result;

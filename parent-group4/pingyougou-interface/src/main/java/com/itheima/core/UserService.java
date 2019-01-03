@@ -1,11 +1,11 @@
 package com.itheima.core;
 
 import com.itheima.core.pojo.user.User;
+import com.itheima.core.pojo.user.User2;
 import entity.PageResult;
+import pojogroup.UserVo;
 
 import java.util.Map;
-import com.itheima.core.pojo.user.User2;
-import pojogroup.UserVo;
 
 public interface UserService {
     void sendCode(String phone);
@@ -25,6 +25,5 @@ public interface UserService {
     void pointsStatus(Long[] ids);
 
     void downdele(Long[] ids);
-
-    UserVo save(User2 user2, User user);
+    UserVo save(User2 user2, User user) ;
 }

@@ -12,7 +12,8 @@
 	<http pattern="/register.html" security="none"></http>
 	<http pattern="/user/add.do" security="none"></http>
 	<http pattern="/user/sendCode.do" security="none"></http>
-	
+    <http pattern="/user/searchCount.do" security="none"></http>
+    <http pattern="/user/searchActive.do" security="none"></http>
 	<!--   entry-point-ref  入口点引用 -->
 	<http use-expressions="false" entry-point-ref="casProcessingFilterEntryPoint">
         <!--这里这个权限只是判断是否登录, 并不能真正授权, 授权是登录校验成功后, 在下面授权的-->
